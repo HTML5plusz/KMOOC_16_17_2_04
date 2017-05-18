@@ -1,0 +1,66 @@
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+#bg{
+  background-image: url("assets/img/bg.jpg");
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  opacity: 0.9;
+}
+
+.appointed{
+  background-color: lightgray;
+}
+
+.nav-item{
+  font-size: 18px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 50px;   
+  border-right: 1px solid gray;
+}
+
+
+.nav-header
+{
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  height: 50px;
+  background: #F8F8F8;
+  width: 100%;
+  box-shadow: 0 4px 2px -2px gray;
+  border-radius: 3px;
+}
+
+.btn-primary{
+  height: 33px !important;
+}
+
+.btn-success{
+  height:100% !important;
+  width: 100px;
+  position: absolute !important;
+  right: 15px !important;
+}
+
+.bordered{
+  margin-top: 10px;
+  border: 2px solid lightgray;
+  padding: 10px;
+}
+
+ 

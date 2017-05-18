@@ -1,0 +1,257 @@
+h2{
+    margin-left: 230px;
+    color: white;
+}
+input{
+    height: 30px;
+}
+.card {
+    display: block;
+    margin: 5px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    transition: box-shadow .25s;
+    padding-bottom: 15px;
+    min-height: 250px !important;
+    max-height: 250px;
+}
+.card:hover {
+    box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+#exportExcelButton{
+    display: inline-block;
+}
+.img-card {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    width: 110px;
+    margin-top: 10px;
+}
+.img-card img{
+    object-fit:none;
+    transition: all .25s ease;
+}
+.card-content {
+    padding: 5px 15px 15px 0;
+    text-align: left;
+    word-wrap: break-word;
+    position: relative !important;
+}
+.card-title {
+    font-weight: 700;
+    margin-top: 0;
+    padding-top: 10px;
+}
+.card-title a {
+    color: #333;
+    text-decoration: none !important;
+}
+.card-title span{
+    font-size: 120%;
+}
+.card-read-more {
+    border-top: 1px solid #D4D4D4;
+}
+.card-read-more a {
+    text-decoration: none !important;
+    padding:10px;
+    font-weight:600;
+    text-transform: uppercase
+}
+.card-title span:first-child{
+    margin-left: 15px;
+}
+.card-title span:last-child{
+    margin-right: 15px;
+}
+.padding-left-null{
+    padding-left: 0;
+}
+
+.LoginHeader {
+    height: 75px;
+    width: 100%;
+}
+.margin-left{
+    margin-left: 0 !important;
+}
+.scollable-pd{
+    display: block;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding-bottom: 100px;
+    padding-left: 230px;
+    margin-top: 60px;
+}
+.bold{
+    font-weight: bold;
+}
+body{
+    overflow: hidden;
+}
+.margin-null{
+    margin: 0;
+}
+.width-max, .width-max input{
+    width: 100% !important;
+}
+.btn{
+    height: 30px;
+}
+.export-excel{
+   padding-bottom: 3px;
+}
+hr{
+    margin-bottom: 0 !important;
+}
+.person-image{
+    width: 100%;
+    height: 200px;
+    background-size: contain;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+.nationality-flag{
+    height: 14px;
+    background-size: contain;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    width: 25px;
+    top: 2px;
+}
+.height-34{
+    height: 34px;
+}
+.input-group-btn{
+    padding: 0;
+}
+.container-fluid{
+    padding: 0;
+    margin-top: -20px;
+}
+.navbar-form{
+    padding-left: 0 !important;
+}
+#Phone_Directory_Form{
+    width: 100%;
+}
+.margin-left-15{
+    padding: 10px 10px;
+    margin-left: 15px;
+}
+.row.btn-group{
+    padding: 10px 30px;
+}
+#phonedirectory{
+    padding-top: 10px;
+}
+.imagepreview {
+    display: table;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.modal {
+    background: rgba(0,0,0,0.5);
+}
+
+.header .chevron:after {
+    content: "\f078";   
+}
+.header.collapsed .chevron:after {
+    content: "\f054";
+}  
+.header{
+    border: 1px solid #aaaaaa;
+    padding: 6px;
+    cursor: pointer;
+}
+.bold{
+    font-weight:bold;
+}
+.bold a{
+    font-size: 117%;
+}
+.font-size-15{
+    font-size: 15px;
+}
+.dark_grey{
+    color:  #5f5f5f;
+}
+.filter_box {
+    border: 1px solid #aaaaaa;
+    border-top-style: none;
+    margin-left: -11px;
+}
+.select_box {
+    display: inline-block !important;
+    width: 82% !important;
+}
+.filter_gap {
+    padding-top: 10px;
+    margin-left: -11px;
+}
+
+.person-image:hover {
+    cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+    .card{
+        min-height: 250px;
+        max-height: 1000px;
+    }
+}
+@media (max-width: 406px) {
+    .card-content{
+        padding-left: 0 !important;
+    }
+    .col-xs-8{
+        width: 90% !important
+    }
+    .person-image{
+        height: 150px;
+    }
+}
+
+@media (min-width: 768px){
+    .navbar-form .input-group .form-control, .navbar-form .input-group .input-group-addon, .navbar-form .input-group .input-group-btn{
+        width: 100%;
+    }
+    .margin-left{
+        margin-left: 15px !important;
+    }
+}
+/*@media (min-width: 768px) and (max-width: 880px) {
+    .card{
+        min-height: 500px;
+        max-height: 500px;
+    }
+}
+@media (min-width: 992px) and (max-width: 1152px) {
+    .card{
+        min-height: 500px;
+        max-height: 500px;
+    }
+}*/
+
+.sub-content{
+    border: 1px solid lightgray;
+}
+
+.btn-div{
+    margin-top: 10px;
+}
+
+.form-control{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,388 @@
+<!--<h2>Championships</h2>-->
+<div class="nav-header">
+    <div class="row">
+        <div class="col-sm-3 nav-item appointed">
+            Championships
+        </div>
+        <div class="col-sm-9 pull-right" style="height: 50px;">
+            <button class="btn btn-success" (click)="openAddNewModal()">ADD</button>
+        </div>
+    </div>
+</div>
+<div class="row scollable-pd" id="scrollable-pd">
+            <div *ngFor="let championship of Championships;let i = index;" class="col-xs-12 col-sm-12 col-md-12 col-lg-5 card">
+                <div *ngIf="championship">
+                <div class="card-title row" *ngIf="championship && championship.name.length > 0">
+                    <span class="pull-left bold" *ngIf="championship.name && championship.name.length > 0">{{championship.name}}</span>
+                    <span class="pull-right bold" *ngIf="championship.id && championship.id.length > 0">
+                        <span>{{championship.id}}</span>
+                    </span>
+                </div>
+                <div class="card-content col-xxs-12 col-xs-8 col-sm-7 col-md-8 col-lg-8">
+                    <div class="" *ngIf="championship.description && championship.description.length > 0">
+                        Description:
+                        <span class="bold">{{championship.description}}</span>
+                    </div>
+                    <div class="" *ngIf="championship.seria">
+                        Seria:
+                        <span class="bold">{{championship.seria.name}}</span>
+                        <span class="bold">{{championship.seria.description}}</span>
+                        
+                    </div>
+                    <div class="" *ngIf="championship.season">
+                        Season:
+                        <span class="bold">{{championship.season.name}}</span>
+                        <span class="bold">{{championship.season.description}}</span>
+                        
+                    </div>
+                     <div class="btn-div" *ngIf="championship.event">
+                        <button class="btn btn-primary" (click)="openDetailsModal(championship)">Events</button>
+                    </div>
+                    <div class="btn-div">
+                        <button class="btn btn-primary" (click)="addSport(championship.id)">Add new Sport</button>
+                    </div>
+                    <div class="btn-div">
+                        <button class="btn btn-primary" (click)="addRound(championship.id)">Add new Round</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+</div>
+
+<modal #championshipdetailmodal id="cdm-modal">
+    <modal-header [show-close]="false">
+        <div>
+            <h4 class="modal-title">Events details</h4>
+        </div>
+    </modal-header>
+    <modal-body>
+        <div *ngIf="selectedChampionship">
+            <div  *ngFor="let event of selectedChampionship.event" style="border: 1px solid black">
+                <span class="bold">{{event.sport.name}}</span>
+                <br>
+                Rounds:
+                <br>
+                <div class="sub-content">
+                    <table class="table-bordered" style="width: 98%; margin: 0 auto;">
+                        <thead>
+                            <tr>
+                                <th class="bold">Name</th>
+                                <th class="bolr">Description</th>
+                            </tr>
+                        <thead></thead>
+                        <tbody>
+                            <tr *ngFor="let round of event.round" >
+                                <td>{{round.name}}</td>
+                                <td>{{round.description}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                Conditions:
+                <br>
+                <div class="sub-content">
+                    <table class="table-bordered" style="width: 98%; margin: 0 auto;">
+                        <thead>
+                            <tr>
+                                <th class="bold">Name</th>
+                                <th class="bolr">Description</th>
+                            </tr>
+                        <thead></thead>
+                        <tbody>
+                            <tr *ngFor="let condition of event.condition" >
+                                <td>{{round.name}}</td>
+                                <td>{{round.description}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                Users:
+                <br>
+                <div class="sub-content">
+                    <table class="table-bordered" style="width: 98%; margin: 0 auto;">
+                        <thead>
+                            <tr>
+                                <th class="bold">Username</th>
+                                <th class="bolr">Password</th>
+                            </tr>
+                        <thead></thead>
+                        <tbody>
+                            <tr *ngFor="let user of event.user" >
+                                <td>{{user.username}}</td>
+                                <td>{{user.passwd}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </modal-body>
+    <modal-footer>
+        l
+    </modal-footer>
+</modal>
+
+
+<modal #championshipaddsportmodal id="can-modal">
+    <modal-header [show-close]="false">
+        <div>
+            <h4 class="modal-title">Add new sport</h4>
+        </div>
+    </modal-header>
+    <modal-body>
+        <span class="bold">Sport</span>
+        <select class="form-control" [(ngModel)]="newSport.sportid" (ngModelChange)="sportChanged($event)">
+            <option *ngFor="let sport of Sports" [value]="sport.id">{{sport.name}}</option>
+        </select>
+
+         <span class="bold">Specialization</span>
+        <select class="form-control" [(ngModel)]="newSport.conditionid" multiple>
+            <option *ngFor="let spec of Specialization" [value]="spec.id">{{spec.name}}</option>
+        </select>
+
+
+        <span class="bold">Condition Type</span>
+        <select class="form-control" [(ngModel)]="conditiontypeid" (ngModelChange)="conditionChanged($event)">
+            <option *ngFor="let cond of ConditionTypes" [value]="cond.id">{{cond.name}}</option>
+        </select>
+
+        <span class="bold">Condition</span>
+        <select class="form-control" [(ngModel)]="newSport.conditionid" multiple>
+            <option *ngFor="let cond of Conditions" [value]="cond.id">{{cond.name}}</option>
+        </select>
+        
+    </modal-body>
+    <modal-footer>
+        <button class="btn btn-primary" (click)="postSport()">Add</button>
+    </modal-footer>
+</modal>
+
+<modal #championshipaddroundmodal id="car-modal">
+    <modal-header [show-close]="false">
+        <div>
+            <h4 class="modal-title">Add new round</h4>
+        </div>
+    </modal-header>
+    <modal-body>
+        <b>Event</b>
+        <select class="form-control" [(ngModel)]="newRound.eventid">
+            <option *ngFor="let event of roundEvents" [value]="event.id">{{event.name}}</option>
+        </select>
+        <b>Name</b>
+        <input type="text" class="form-control" [(ngModel)]="newRound.Name">
+        <b>Description</b>
+        <input type="text" class="form-control" [(ngModel)]="newRound.Description">
+    </modal-body>
+    <modal-footer>
+        <button class="btn btn-primary" (click)="postRound()">Add</button>
+    </modal-footer>
+</modal>
+
+
+<modal #addnewmodal id="add-modal">
+    <modal-header [show-close]="false">
+        <div>
+            <h4 class="modal-title">Add new</h4>
+        </div>
+    </modal-header>
+    <modal-body>
+        <b>Select type</b>
+        <select class="form-control" [(ngModel)]="currentAddType" (ngModelChange)="addTypeChanged()">
+            <option *ngFor="let type of addTypes" [value]="type">{{type}}</option>
+        </select>
+        <div *ngIf="currentAddType == 'Condition'">
+            <div class="bordered">
+                <b>Name</b>
+                <input class="form-control" [(ngModel)]="newCondition.name">
+                <b>Description</b>
+                <input class="form-control" [(ngModel)]="newCondition.description">
+                <b>Minimum</b>
+                <input class="form-control" [(ngModel)]="newCondition.minimum">
+                <b>Maximum</b>
+                <input class="form-control" [(ngModel)]="newCondition.maximum">
+                <b>Equal</b>
+                <input class="form-control" [(ngModel)]="newCondition.equal">
+                <b>Condition Type</b>
+                <select class="form-control" [(ngModel)]="newCondition.typeid">
+                    <option *ngFor="let cond of ConditionTypes" [value]="cond.id">{{cond.name}}</option>
+                </select>
+                <b>Sport</b>
+                <select class="form-control" [(ngModel)]="newCondition.sportid">
+                    <option *ngFor="let sport of Sports" [value]="sport.id">{{sport.name}}</option>
+                </select>
+                <button class="btn btn-primary" (click)="addNewCondition()">Add new</button>
+            </div>
+
+            <div class="bordered">
+                <select class="form-control" [(ngModel)]="selectedConditionTypeForAddnew" (ngModelChange)="conditionTypeChangedAtAdd($event)">
+                    <option *ngFor="let cond of ConditionTypes" [value]="cond.id">{{cond.name}}</option>
+                </select>
+                
+                <table class="table-bordered" style="width: 98%; margin: 0 auto;">
+                    <thead>
+                        <tr>
+                            <th class="bold">Name</th>
+                            <th class="bolr">Description</th>
+                            <th class="bolr">Sport</th>
+                            <th class="bolr">Minimum</th>
+                            <th class="bolr">Maximum</th>
+                            <th class="bolr">Equal</th>
+                        </tr>
+                    <thead></thead>
+                    <tbody  *ngIf="conditionData && conditionData != null">
+                        <tr *ngFor="let conditionI of conditionData" >
+                            <td *ngIf="conditionI != null">{{conditionI.name}}</td>
+                            <td *ngIf="conditionI != null">{{conditionI.description}}</td>
+                            <td *ngIf="conditionI != null && conditionI.sport">{{conditionI.sport.name}}</td>
+                            <td *ngIf="conditionI != null">{{conditionI.minimum}}</td>
+                            <td *ngIf="conditionI != null">{{conditionI.maximum}}</td>
+                            <td *ngIf="conditionI != null">{{conditionI.equal}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div *ngIf="currentAddType == 'Condition Type'">
+            <div class="bordered">
+                <b>Name</b>
+                <input class="form-control" [(ngModel)]="newConditionType.name">
+                <b>Description</b>
+                <input class="form-control" [(ngModel)]="newConditionType.description">
+                <button class="btn btn-primary" (click)="addNewConditionType()">Add new</button>
+            </div>
+
+            <div class="bordered">
+                <table class="table-bordered" style="width: 98%; margin: 0 auto;">
+                    <thead>
+                        <tr>
+                            <th class="bold">Name</th>
+                            <th class="bolr">Description</th>
+                        </tr>
+                    <thead></thead>
+                    <tbody  *ngIf="conditionTypeData && conditionTypeData != null">
+                        <tr *ngFor="let conditionI of conditionTypeData" >
+                            <td *ngIf="conditionI != null">{{conditionI.name}}</td>
+                            <td *ngIf="conditionI != null">{{conditionI.description}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div *ngIf="currentAddType == 'Season'">
+            <div class="bordered">
+                <b>Name</b>
+                <input class="form-control" [(ngModel)]="newseason.name">
+                <b>Description</b>
+                <input class="form-control" [(ngModel)]="newseason.description">
+                <button class="btn btn-primary" (click)="addNewseason()">Add new</button>
+            </div>
+
+            <div class="bordered">
+                <table class="table-bordered" style="width: 98%; margin: 0 auto;">
+                    <thead>
+                        <tr>
+                            <th class="bold">Name</th>
+                            <th class="bolr">Description</th>
+                        </tr>
+                    <thead></thead>
+                    <tbody  *ngIf="seasonData && seasonData != null">
+                        <tr *ngFor="let season of seasonData" >
+                            <td *ngIf="season != null">{{season.name}}</td>
+                            <td *ngIf="season != null">{{season.description}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div *ngIf="currentAddType == 'Seria'">
+            <div class="bordered">
+                <b>Name</b>
+                <input class="form-control" [(ngModel)]="newseria.name">
+                <b>Description</b>
+                <input class="form-control" [(ngModel)]="newseria.description">
+                <button class="btn btn-primary" (click)="addNewseria()">Add new</button>
+            </div>
+
+            <div class="bordered">
+                <table class="table-bordered" style="width: 98%; margin: 0 auto;">
+                    <thead>
+                        <tr>
+                            <th class="bold">Name</th>
+                            <th class="bolr">Description</th>
+                        </tr>
+                    <thead></thead>
+                    <tbody  *ngIf="seriaData && seriaData != null">
+                        <tr *ngFor="let seria of seriaData" >
+                            <td *ngIf="seria != null">{{seria.name}}</td>
+                            <td *ngIf="seria != null">{{seria.description}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div *ngIf="currentAddType == 'Sports'">
+            <div class="bordered">
+                <b>Name</b>
+                <input class="form-control" [(ngModel)]="newsports.name">
+                <b>Description</b>
+                <input class="form-control" [(ngModel)]="newsports.description">
+                <button class="btn btn-primary" (click)="addNewsports()">Add new</button>
+            </div>
+
+            <div class="bordered">
+                <table class="table-bordered" style="width: 98%; margin: 0 auto;">
+                    <thead>
+                        <tr>
+                            <th class="bold">Name</th>
+                            <th class="bolr">Description</th>
+                        </tr>
+                    <thead></thead>
+                    <tbody  *ngIf="sportsData && sportsData != null">
+                        <tr *ngFor="let sports of sportsData" >
+                            <td *ngIf="sports != null">{{sports.name}}</td>
+                            <td *ngIf="sports != null">{{sports.description}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div *ngIf="currentAddType == 'Sport specialization'">
+            <div class="bordered">
+                <b>Name</b>
+                <input class="form-control" [(ngModel)]="newspec.name">
+                <b>Description</b>
+                <input class="form-control" [(ngModel)]="newspec.description">
+                <b>Sport</b>
+                <select class="form-control" [(ngModel)]="newspec.parendid">
+                    <option *ngFor="let sport of Sports" [value]="sport.id">{{sport.name}}</option>
+                </select>
+                <button class="btn btn-primary" (click)="addNewSpec()">Add new</button>
+            </div>
+
+            <div class="bordered">
+                <select class="form-control" [(ngModel)]="selectedSportForAddnew" (ngModelChange)="sportChangedAtAddSpec($event)">
+                    <option *ngFor="let sport of Sports" [value]="sport.id">{{sport.name}}</option>
+                </select>
+                
+                <table class="table-bordered" style="width: 98%; margin: 0 auto;">
+                    <thead>
+                        <tr>
+                            <th class="bold">Name</th>
+                            <th class="bolr">Description</th>
+                        </tr>
+                    <thead></thead>
+                    <tbody  *ngIf="specData && specData != null">
+                        <tr *ngFor="let specD of specData" >
+                            <td *ngIf="specD != null">{{specD.name}}</td>
+                            <td *ngIf="specD != null">{{specD.description}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </modal-body>
+    <modal-footer>
+    </modal-footer>
+</modal>
