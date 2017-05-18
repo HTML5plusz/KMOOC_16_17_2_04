@@ -4,11 +4,15 @@
         <div class="col-sm-3 nav-item appointed">
             Championships
         </div>
+        <div>
+    <h1>CSEGÉNY ROLAND</h1>
+</div>
         <div class="col-sm-9 pull-right" style="height: 50px;">
             <button class="btn btn-success" (click)="openAddNewModal()">ADD</button>
         </div>
     </div>
 </div>
+
 <div class="row scollable-pd" id="scrollable-pd">
             <div *ngFor="let championship of Championships;let i = index;" class="col-xs-12 col-sm-12 col-md-12 col-lg-5 card">
                 <div *ngIf="championship">
